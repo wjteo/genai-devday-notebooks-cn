@@ -1,5 +1,5 @@
 apps:
-  - port:
+  - port: 27017
     # Runs MongoDB Atlas Local (mongod+mongot, for Atlas/Vector Search) as a
     # plain docker container and installs requirements.txt into Cloud
     # Studio's own Python environment. Notebooks are opened directly in Cloud
