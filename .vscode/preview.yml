@@ -1,0 +1,8 @@
+apps:
+  - port: 8888
+    run: /usr/local/bin/start.sh
+    root: .
+    name: GenAI Notebooks (Jupyter + MongoDB)
+    autoOpen: true
+    autoPreview: true
+    mainPort: true
