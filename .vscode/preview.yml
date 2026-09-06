@@ -1,6 +1,11 @@
 apps:
   - port: 8888
-    run: /usr/local/bin/start.sh
+    # Cloud Studio's default templates don't build our .devcontainer/Dockerfile
+    # automatically, but the workspace does have a working Docker daemon, so
+    # just run the already-built image directly instead. The image bundles
+    # mongod+mongot (Atlas/Vector Search) and JupyterLab; see
+    # .devcontainer/Dockerfile and .devcontainer/start.sh for what's inside.
+    run: docker run --rm -p 8888:8888 -v "$(pwd)":/workspaces wenjieteo15645/genai-devday-devcontainer:latest
     root: .
     name: GenAI Notebooks (Jupyter + MongoDB)
     autoOpen: true
