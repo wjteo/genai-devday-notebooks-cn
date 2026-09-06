@@ -15,7 +15,7 @@
     },
     "containerEnv": {
         "PROXY_ENDPOINT": "https://vtqjvgchmwcjwsrela2oyhlegu0hwqnw.lambda-url.us-west-2.on.aws/",
-        "MONGODB_URI": "mongodb://admin:mongodb@localhost:27017/"
+        "MONGODB_URI": "mongodb://admin:mongodb@localhost:27017/?directConnection=true&authSource=admin"
     },
     "postCreateCommand": "pip install -r requirements.txt",
     "customizations": {

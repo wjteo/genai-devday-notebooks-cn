@@ -1,7 +1,13 @@
 #!/bin/bash
 set -e
 
-MONGODB_URI="mongodb://admin:mongodb@localhost:27017/"
+
+# directConnection=true is required here: mongodb-atlas-local runs as a
+# single-node replica set, so without it the driver "discovers" the replica
+# set member's address from the server (its internal container hostname)
+# and tries to reconnect there instead of localhost, which hangs until
+# ServerSelectionTimeoutError once Jupyter is running outside this container.
+MONGODB_URI="mongodb://admin:mongodb@localhost:27017/?directConnection=true&authSource=admin"
 PROXY_ENDPOINT="https://vtqjvgchmwcjwsrela2oyhlegu0hwqnw.lambda-url.us-west-2.on.aws/"
 
 # Start MongoDB Atlas Local (mongod + mongot, for Atlas/Vector Search) as a
