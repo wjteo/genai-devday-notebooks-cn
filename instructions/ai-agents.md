@@ -1,28 +1,7 @@
----
-slug: agents-lab
-id: gyuxthfmoxq2
-type: challenge
-title: The A to Z of Building AI Agents
-tabs:
-- id: aqyl8uxpa4qw
-  title: Code Editor
-  type: service
-  hostname: genai
-  path: /?folder=/root/labs/
-  port: 8081
-- id: mwcwgexqkzog
-  title: Terminal
-  type: terminal
-  hostname: genai
-  cmd: bash
-difficulty: ""
-enhanced_loading: null
----
-
 💻 Code Block Solutions
 ===
 
-For this challenge you will use ``[[ Instruqt-Var key="CURRENT_NOTEBOOK_FOR_CHALLENGE" hostname="genai" ]]`` in the [button label="Code Editor" variant="outline"](tab-0) tab.
+For this challenge you will use the `ai-agents-lab.ipynb` notebook in the Code Editor.
 
 > [!NOTE]
 > The solutions to the exercises are provided below. If you don’t need them, collapse this window by clicking the **Hide Instructions** button. You can toggle it back on at any time.
@@ -30,7 +9,7 @@ For this challenge you will use ``[[ Instruqt-Var key="CURRENT_NOTEBOOK_FOR_CHAL
 
 CODE_BLOCK_1
 ===
-Paste the following into VS Code in the [button label="Code Editor" variant="outline"](tab-0) tab:
+Paste the following into the notebook:
 ```python
 vo.contextualized_embed(inputs=[[query]], model="voyage-context-4", input_type="query")
 ```
@@ -84,7 +63,7 @@ CODE_BLOCK_6
 
 CODE_BLOCK_7
 ===
-Paste the following into VS Code in the [button label="Code Editor" variant="outline"](tab-0) tab:
+Paste the following into the notebook:
 ```python
 {"_id": 0, "body": 1}
 ```
@@ -127,7 +106,7 @@ tool.invoke(tool_call["args"])
 
 CODE_BLOCK_14
 ===
-Paste the following into VS Code in the [button label="Code Editor" variant="outline"](tab-0) tab:
+Paste the following into the notebook:
 ```python
 graph.add_node("agent", agent)
 ```
