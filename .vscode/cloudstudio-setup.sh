@@ -24,10 +24,20 @@ fi
 
 pip install -r requirements.txt
 
-# Notebooks read MONGODB_URI/PROXY_ENDPOINT via os.environ.get(...), but this
-# script's own env doesn't reach the Jupyter kernels/terminals Cloud Studio
-# spawns later. Those inherit the login shell's profile instead, so append
-# the exports there (idempotently) rather than relying on this process's env.
+# Notebooks read MONGODB_URI/PROXY_ENDPOINT via os.environ.get(...). Jupyter
+# kernels here are spawned by the editor's extension host, which starts
+# before this script runs and does NOT re-source the shell profile per
+# kernel -- so appending to ~/.zshrc/~/.bashrc (a prior attempt) never
+# reaches the kernel. Write a .env file at the repo root instead: VS Code's
+# Python extension (python.envFile, default "${workspaceFolder}/.env")
+# injects it directly into any kernel/debug session it spawns.
+cat > "$(dirname "$0")/../.env" <<EOF
+MONGODB_URI=$MONGODB_URI
+PROXY_ENDPOINT=$PROXY_ENDPOINT
+EOF
+
+# Kept for terminal-based work (e.g. running scripts directly, not through a
+# notebook kernel), even though it doesn't reach Jupyter kernels.
 for profile in "$HOME/.zshrc" "$HOME/.bashrc"; do
   [ -f "$profile" ] || touch "$profile"
   if ! grep -q '^export MONGODB_URI=' "$profile" 2>/dev/null; then
@@ -41,4 +51,4 @@ for profile in "$HOME/.zshrc" "$HOME/.bashrc"; do
 done
 
 echo "MongoDB Atlas Local is running on localhost:27017."
-echo "Open a NEW terminal (or restart your Jupyter kernel) to pick up MONGODB_URI/PROXY_ENDPOINT."
+echo "Wrote .env at the repo root. Restart your Jupyter kernel to pick up MONGODB_URI/PROXY_ENDPOINT."
