@@ -1,13 +1,12 @@
 apps:
-  - port: 8888
-    # Cloud Studio's default templates don't build our .devcontainer/Dockerfile
-    # automatically, but the workspace does have a working Docker daemon, so
-    # just run the already-built image directly instead. The image bundles
-    # mongod+mongot (Atlas/Vector Search) and JupyterLab; see
-    # .devcontainer/Dockerfile and .devcontainer/start.sh for what's inside.
-    run: docker run --rm -p 8888:8888 -v "$(pwd)":/workspaces wenjieteo15645/genai-devday-devcontainer:latest
+  - port:
+    # Runs MongoDB Atlas Local (mongod+mongot, for Atlas/Vector Search) as a
+    # plain docker container and installs requirements.txt into Cloud
+    # Studio's own Python environment. Notebooks are opened directly in Cloud
+    # Studio's editor (native Jupyter support) rather than a separate
+    # JupyterLab tab. See .vscode/cloudstudio-setup.sh.
+    run: bash .vscode/cloudstudio-setup.sh
     root: .
-    name: GenAI Notebooks (Jupyter + MongoDB)
-    autoOpen: true
-    autoPreview: true
-    mainPort: true
+    name: MongoDB Atlas Local setup
+    autoOpen: false
+    autoPreview: false
