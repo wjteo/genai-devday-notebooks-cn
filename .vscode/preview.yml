@@ -8,5 +8,5 @@ apps:
     run: bash .vscode/cloudstudio-setup.sh
     root: .
     name: MongoDB Atlas Local setup
-    autoOpen: true
+    autoOpen: false
     autoPreview: false
